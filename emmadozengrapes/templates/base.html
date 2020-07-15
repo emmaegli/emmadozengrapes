@@ -1,0 +1,79 @@
+{% load static wagtailuserbar %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% with self.get_site.site_name as site_name %}
+                    {% if site_name %}- {{ site_name }}{% endif %}
+                {% endwith %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {# Global stylesheets #}
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/emmadozengrapes.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/emmadozenstyles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome-all.min.css' %}">
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="d-flex flex-row flex-grow-1 align-items-center justify-content-between">
+                    <div>
+                        <a class="navbar-brand" href="#">
+                            <img src="{% static 'assets/LogoTransparent.png' %}" width="80" height="80" alt="Navbar Logo">
+                        </a>
+                        <button type="button" class="btn btn-light nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </button>
+                        <button type="button" class="btn btn-light nav-item">
+                            <a class="nav-link" href="/blog">Blog</a>
+                        </button>
+                        <button type="button" class="btn btn-light nav-item">
+                            <a class="nav-link" href="#">Wine Reviews</a>
+                        </button>
+                        <button type="button" class="btn btn-light nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </button>
+                    </div>
+                        <a class="btn btn-light nav-item" href="https://www.instagram.com/emmadozengrapes/" target="_blank">
+                            <div class="d-flex flex-row align-items-center">
+                                <i class="fab fa-instagram fa-2x mr-2"></i>
+                                <p class="m-0 p-0">@emmadozengrapes</p>
+                            </div>
+                        </a>
+                        
+                </div>
+            </div>
+        </nav>
+
+        {% block content %}{% endblock %}
+
+        {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/emmadozengrapes.js' %}"></script>
+
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+        {% endblock %}
+    </body>
+</html>
