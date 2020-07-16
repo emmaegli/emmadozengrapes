@@ -32,8 +32,17 @@
 }
 
 .homepage-subheader {
-    font-size: 2em;
-    font-family: Cinzel;
+    font-size: 8em;
+    font-family: Lora-Italic;
+    text-align: center;
+}
+
+.blogpost-header {
+  font-size: 3em;
+  font-family: Lora-Italic;
+  text-align: center;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
 }
 
 .instagram-container {
@@ -43,4 +52,58 @@
 .instagram-photo {
     height: 300px;
     background-color: blue;
+}
+
+.nav-item {
+  font-family: Lora-Regular;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-item > .nav-link {
+  color: black;
+}
+
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.navigation-item-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.social-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Applies only to small screen devices */
+@media (max-width: 576px) {
+  .navbar-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .navigation-item-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navigation-item-container > button {
+    width: 100%;
+  }
+
+  .homepage-header {
+    font-size: 4em;
+  }
 }
