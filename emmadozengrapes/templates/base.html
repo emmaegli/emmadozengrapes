@@ -34,12 +34,17 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
+        <div class="site-container p-0 d-flex flex-column">
+            {% wagtailuserbar %}
+            {% include 'navbar.html' %}
 
-        {% include 'navbar.html' %}
+            <div class="d-flex flex-column flex-fill">
+                {% block content %}{% endblock %}
+            </div>
 
-        {% block content %}{% endblock %}
-
+            {% include 'footer.html' %}
+        </div>
+        
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/emmadozengrapes.js' %}"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
