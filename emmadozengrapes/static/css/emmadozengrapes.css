@@ -28,3 +28,28 @@
     color: black;
     text-decoration: none;
 }
+
+.home-card-image {
+    width: 150px;
+    height: 150px;
+    background-color: grey;
+    border: none;
+}
+
+.home-card {
+    cursor: pointer;
+}
+
+.home-card:hover {
+    border: 1px solid black;
+}
+
+.home-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.home-card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}

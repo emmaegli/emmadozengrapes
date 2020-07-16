@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags  wagtailimages_tags %}
 
 {% block body_class %}template-blogindexpage{% endblock %}
 
@@ -12,24 +12,24 @@
         <div class="container">
             <div class="row">
                 {% for post in page.get_children.reverse %}
-    
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                            {% if post.specific.preview_image %}
-                            <img class="card-img-top" src="{{ post.specific.preview_image.url }}" alt="Card image cap">
-                            {% endif %}
-                            
-                            <div class="card-body">
-                            <h2 class="card-title loraitalic-font"><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-                            <p class="card-text lora-font">{{ post.specific.intro }}</p>
-                            <p class="card-text lora-font">
-                                <i class="fas fa-calendar mr-2"></i>
-                                {{ post.specific.date }}
-                            </p>
+                    {% with post=post.specific %}
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="card">
+                                {% with post.main_image as main_image %}
+                                    {% if main_image %}{% image main_image height-300 class="card-img-top" %}{% endif %}
+                                {% endwith %}
+                                
+                                <div class="card-body">
+                                <h2 class="card-title loraitalic-font"><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+                                <p class="card-text lora-font">{{ post.intro }}</p>
+                                <p class="card-text lora-font">
+                                    <i class="fas fa-calendar mr-2"></i>
+                                    {{ post.date }}
+                                </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
+                    {% endwith %}
                 {% endfor %}
             </div>
         </div>

@@ -1,13 +1,71 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 {% block body_class %}
 template-homepage
 {% endblock %} 
 {% block content %}
-    <div class="container align-items-center">
-        <h1 class="homepage-header">
-            {{page.title}}
-        </h1>
-        {{ page.body | richtext }}
+    <div class="container-fluid pl-2 pr-2">
+        <div class="d-flex flex-row justify-content-center">
+            <h1 class="homepage-header">
+                {{page.title}}
+            </h1>
+        </div>
+        <div class="d-flex flex-row flex-wrap justify-content-center">
+            <div class="col-md-1 col-sm-auto">
+
+            </div>
+            <div class="col-md-6 col-sm-12 mb-2">
+                <h1 class="alysa-font">recent blog posts</h1>
+                {% for post in recent_blog_posts %}
+                    {% with post=post.specific %}
+                        <div class="col-12 mb-1">
+                            <a href="{% pageurl post %}" class="home-card-link">
+                                <div class="card home-card loraitalic-font">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="d-flex flex-column align-items-center justify-content-center">
+                                            {% with post.main_image as main_image %}
+                                                {% if main_image %}{% image main_image height-150 class="home-card-image" %}{% endif %}
+                                            {% endwith %}
+                                        </div>
+                                        
+                                        <div class="pl-2">
+                                            <h3 >{{post.title}}</h3>
+                                            <p>{{post.intro}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+            
+            <div class="col-md-4 col-sm-12">
+                <h1 class="alysa-font">Recent Wine Reviews</h1>
+                {% for post in recent_wine_reviews %}
+                    {% with post=post.specific %}
+                        <div class="col-10">
+                            <a href="{% pageurl post %}" class="home-card-link">
+                                <div class="card home-card loraitalic-font">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="d-flex flex-column align-items-center justify-content-center">
+                                            {% with post.main_image as main_image %}
+                                                {% if main_image %}{% image main_image height-150 class="home-card-image" %}{% endif %}
+                                            {% endwith %}
+                                        </div>
+                                        
+                                        <div class="pl-2">
+                                            <h3 >{{post.title}}</h3>
+                                            <p>{{post.intro}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}
