@@ -31,6 +31,11 @@
   font-family: Lora-Regular;
 }
 
+.footer-signature{
+  font-size: 3em;
+  font-family: Alysa;
+}
+
 .homepage-header {
   font-size: 8em;
   font-family: Alysa;
@@ -38,9 +43,9 @@
 }
 
 .homepage-subheader {
-    font-size: 8em;
-    font-family: Lora-Italic;
-    text-align: center;
+    font-size: 2em;
+    font-family: Lora-Regular;
+    text-align: left;
 }
 
 .blogpost-header {
@@ -58,6 +63,11 @@
 .instagram-photo {
     height: 300px;
     background-color: blue;
+}
+
+.emmadozenheader {
+  background-color: rgb(253 251 251);
+  margin-bottom: 10px;
 }
 
 .nav-item {

@@ -16,7 +16,12 @@
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="card">
                                 {% with post.main_image as main_image %}
-                                    {% if main_image %}{% image main_image height-300 class="card-img-top" %}{% endif %}
+                                    {% if main_image %}
+                                    <div class="d-flex flex-row justify-content-center">
+                                        {% image main_image height-300 %}
+                                    </div>
+                                        
+                                    {% endif %}
                                 {% endwith %}
                                 
                                 <div class="card-body">

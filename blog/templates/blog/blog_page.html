@@ -1,37 +1,60 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags static %}
 
 {% block body_class %}template-blogpage{% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/blog_page.css' %}">
+{% endblock %}
+
 {% block content %}
     <div class="container align-items-center">
+        <a href="{{ page.get_parent.url }}">
+            <p>
+                <i class="fas fa-chevron-left mr-2"></i>
+                Return to blog
+            </p>
+        </a>
         <h1 class="blogpost-header">{{ page.title }}</h1>
+        <div class="d-flex flex-row align-items-center justify-content-center">
+            {% for category in page.categories.all %}
+                <div class="tag">
+                    {{category}}
+                </div>
+            {% endfor %}
+        </div>
         <p class="meta">{{ page.date }}</p>
-
         <div class="intro">{{ page.intro }}</div>
-
-        {{ page.body | richtext }}
-
-        <p>
-            <a href="{{ page.get_parent.url }}">Return to blog</a>
-        </p>
-
-        {% for item in page.gallery_images.all %}
-            <div style="float: left; margin: 10px">
-                {% image item.image fill-320x240 %}
-                <p>{{ item.caption }}</p>
-            </div>
-        {% endfor %}
-
-        {% if page.tags.all.count %}
-            <div class="tags">
-                <h3>Tags</h3>
-                {% for tag in page.tags.all %}
-                    <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
+        <div>
+            {{ page.body | richtext }}
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex flex-row flex-wrap justify-content-center">
+                {% for item in page.gallery_images.all %}
+                    <div class="gallery-image-container">
+                        {% image item.image height-360 %}
+                        <p class="gallery-image-caption">{{ item.caption }}</p>
+                    </div>
                 {% endfor %}
             </div>
+        </div>
+
+        {% if page.tags.all.count %}
+            <div class="row">
+                <div class="col-12 d-flex flex-row flex-wrap">
+                    {% for tag in page.tags.all %}
+                        <a href="/blog?tag={{ tag }}" class="tag-link">
+                            <div class="tag loraitalic-font">
+                                <i class="fas fa-tag mr-1 d-flex align-items-center justify-content-center"></i>
+                                {{ tag }}
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
         {% endif %}
+        
     </div>
     
 

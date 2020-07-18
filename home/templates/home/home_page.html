@@ -15,7 +15,7 @@ template-homepage
 
             </div>
             <div class="col-md-6 col-sm-12 mb-2">
-                <h1 class="alysa-font">recent blog posts</h1>
+                <h1 class="homepage-subheader">blog posts</h1>
                 {% for post in recent_blog_posts %}
                     {% with post=post.specific %}
                         <div class="col-12 mb-1">
@@ -41,7 +41,7 @@ template-homepage
             </div>
             
             <div class="col-md-4 col-sm-12">
-                <h1 class="alysa-font">Recent Wine Reviews</h1>
+                <h1 class="homepage-subheader">wine reviews</h1>
                 {% for post in recent_wine_reviews %}
                     {% with post=post.specific %}
                         <div class="col-10">

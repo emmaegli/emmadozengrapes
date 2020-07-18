@@ -18,7 +18,7 @@ class HomePage(Page):
         context = super().get_context(request, *args, **kwargs)
 
         recent_wine_reviews = BlogPage.objects.filter(
-            categories__name="Wine Review"
+            categories__name="Wine Reviews"
         ).reverse()[:3]
         context["recent_wine_reviews"] = recent_wine_reviews
         context["recent_blog_posts"] = BlogPage.objects.exclude(
