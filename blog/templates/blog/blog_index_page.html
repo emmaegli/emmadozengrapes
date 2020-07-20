@@ -7,7 +7,6 @@
 {% block content %}
     <div class="container-fluid align-items-center">
         <h1 class="homepage-header">{{ page.title }}</h1>
-
         <h5 class="homepage-subheader" style="text-align: center;">{{ page.intro|richtext }}</h5>
         <div class="container">
             <div class="row">
@@ -18,7 +17,8 @@
                                 {% with post.main_image as main_image %}
                                     {% if main_image %}
                                     <div class="d-flex flex-row justify-content-center">
-                                        {% image main_image height-300 %}
+                                        {% image main_image original as card_image %}
+                                        <img src="{{card_image.url}}" class="card-img-top"/>
                                     </div>
                                         
                                     {% endif %}
@@ -39,8 +39,5 @@
             </div>
         </div>
     </div>
-
-    
-    
 
 {% endblock %}

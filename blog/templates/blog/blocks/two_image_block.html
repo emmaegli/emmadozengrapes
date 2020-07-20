@@ -1,0 +1,20 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/two_image_block.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 col-sm-12 pb-3">
+        {% image self.left_image original as left_photo %}
+        <img class="left block-image" src="{{left_photo.url}}" height="auto" width="100%"/>
+    </div>
+    <div class="col-md-6 col-sm-12 pb-3">
+        {% image self.right_image original as right_photo %}
+        <img class="right block-image" src="{{right_photo.url}}" height="auto" width="100%"/>
+    </div>
+</div>
+
+{% endblock %}

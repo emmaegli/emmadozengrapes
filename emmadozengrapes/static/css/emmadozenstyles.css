@@ -4,9 +4,9 @@
 }
 
 @font-face {
-    font-family: Cinzel;
-    src: url(../assets/Cinzel-Regular.ttf);
-  }
+  font-family: Cinzel;
+  src: url(../assets/Cinzel-Regular.ttf);
+}
 
 @font-face {
   font-family: Lora-Regular;
@@ -22,7 +22,6 @@
   font-family: Alysa;
 }
 
-
 .loraitalic-font {
   font-family: Lora-Italic;
 }
@@ -31,21 +30,31 @@
   font-family: Lora-Regular;
 }
 
-.footer-signature{
+.footer-signature {
   font-size: 3em;
   font-family: Alysa;
 }
 
 .homepage-header {
-  font-size: 8em;
+  font-size: 7em;
   font-family: Alysa;
   text-align: center;
+  /* margin-top: 0.25em; */
+  margin-bottom: 0.25em;
+  /* font-size: 65px; */
+
+  position: sticky;
+  position: -webkit-sticky; /* Safari */
+  top: -0.25em;
+  /* top: 0; */
+
+  z-index: 1021;
 }
 
 .homepage-subheader {
-    font-size: 2em;
-    font-family: Lora-Regular;
-    text-align: left;
+  font-size: 2em;
+  font-family: Lora-Regular;
+  text-align: left;
 }
 
 .blogpost-header {
@@ -57,12 +66,12 @@
 }
 
 .instagram-container {
-    padding: 15px;
+  padding: 15px;
 }
 
 .instagram-photo {
-    height: 300px;
-    background-color: blue;
+  height: 300px;
+  background-color: blue;
 }
 
 .emmadozenheader {
@@ -85,7 +94,7 @@
   flex-direction: row;
   flex-grow: 1;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
 }
 
 .navigation-item-container {
@@ -121,5 +130,6 @@
 
   .homepage-header {
     font-size: 4em;
+    top: -0.125em;
   }
 }

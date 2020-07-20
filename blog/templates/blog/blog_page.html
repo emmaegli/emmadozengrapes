@@ -9,53 +9,44 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container align-items-center">
-        <a href="{{ page.get_parent.url }}">
-            <p>
-                <i class="fas fa-chevron-left mr-2"></i>
-                Return to blog
-            </p>
-        </a>
-        <h1 class="blogpost-header">{{ page.title }}</h1>
-        <div class="d-flex flex-row align-items-center justify-content-center">
-            {% for category in page.categories.all %}
-                <div class="tag">
-                    {{category}}
-                </div>
-            {% endfor %}
-        </div>
-        <p class="meta">{{ page.date }}</p>
-        <div class="intro">{{ page.intro }}</div>
-        <div>
-            {{ page.body | richtext }}
-        </div>
-        <div class="row">
-            <div class="col-12 d-flex flex-row flex-wrap justify-content-center">
-                {% for item in page.gallery_images.all %}
-                    <div class="gallery-image-container">
-                        {% image item.image height-360 %}
-                        <p class="gallery-image-caption">{{ item.caption }}</p>
+<div class="container align-items-center">
+
+    <h1 class="blogpost-header">{{page.title}}</h1>
+
+    <p class="text-muted mb-2">{{page.date}}</p>
+    <p class="text-muted mt-2">{{page.author}}</p>
+
+    {% with blocks=self.body %}
+        {% for block in blocks %}
+                {%if block.block_type == 'image'%}
+                    <div class="row">
+                        <div class="col-12">
+                            {% image block.value width-800 as photo %}
+                            <img src="{{photo.url}}" height="auto" width="100%" style="padding-top: 15px; padding-bottom: 15px"/>
+                        </div>
                     </div>
+                {% else %}
+                    <section class="block-{{ block.block_type }} pt-3 pb-3">
+                        {{ block }}
+                    </section>
+                {% endif %}
+        {% endfor %}
+    {% endwith %}
+
+    {% if page.tags.all.count %}
+        <div class="row">
+            <div class="col-12 d-flex flex-row flex-wrap">
+                {% for tag in page.tags.all %}
+                    <a href="/blog?tag={{ tag }}" class="tag-link">
+                        <div class="tag loraitalic-font">
+                            <i class="fas fa-tag mr-1 d-flex align-items-center justify-content-center"></i>
+                            {{ tag }}
+                        </div>
+                    </a>
                 {% endfor %}
             </div>
         </div>
-
-        {% if page.tags.all.count %}
-            <div class="row">
-                <div class="col-12 d-flex flex-row flex-wrap">
-                    {% for tag in page.tags.all %}
-                        <a href="/blog?tag={{ tag }}" class="tag-link">
-                            <div class="tag loraitalic-font">
-                                <i class="fas fa-tag mr-1 d-flex align-items-center justify-content-center"></i>
-                                {{ tag }}
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-        
-    </div>
+    {% endif %}
     
-
+</div>
 {% endblock %}

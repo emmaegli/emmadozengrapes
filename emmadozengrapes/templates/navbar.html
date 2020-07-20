@@ -1,4 +1,4 @@
-<nav  class="navbar navbar-expand-lg navbar-light emmadozenheader">
+<nav  class="navbar sticky-top navbar-expand-lg navbar-light emmadozenheader">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,37 +12,44 @@
                     <a class="nav-link" href="/blog">Blog</a>
                 </button>
                 <button type="button" class="btn nav-item lora-font">
-                    <a class="nav-link" href="#">Wine Reviews</a>
-                </button>
-                <button type="button" class="btn nav-item lora-font">
                     <a class="nav-link" href="#">About</a>
                 </button>
 
             </div>
-            <div class="social-buttons-container">
-                <a class="btn nav-item" href="https://www.instagram.com/emmadozengrapes/" target="_blank">
-                    <div class="d-flex flex-row align-items-center">
-                        <i class="fab fa-instagram fa-lg"></i>
-                        
-                    </div>
-                </a>
-                <a class="btn nav-item" href="https://www.instagram.com/emmadozengrapes/" target="_blank">
-                    <div class="d-flex flex-row align-items-center">
-                        <i class="fab fa-facebook-f fa-lg"></i>
-                        
-                    </div>
-                </a>
-                <a class="btn nav-item" href="https://www.instagram.com/emmadozengrapes/" target="_blank">
-                    <div class="d-flex flex-row align-items-center">
-                        <i class="fab fa-pinterest-p fa-lg"></i>
-                        
-                    </div>
-                </a>
-                <a class="btn nav-item" href="mailto: emmadozengrapes@gmail.com" class="email-link">
-                    <div class="d-flex flex-row align-items-center">
-                        <i class="far fa-envelope fa-lg"></i>
-                    </div>
-                </a>
+            <div class="row">
+                <div class="col-md-auto col-sm-12">
+                    <form class="form-inline my-2 flex-nowrap" action="{% url 'search' %}" method="GET">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" {% if search_query %} value="{{ search_query }}"{% endif %}>
+                        <button class="btn btn-outline" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="col-md-auto col-sm-12 social-buttons-container">
+                    <a class="btn nav-item" href="https://www.instagram.com/emmadozengrapes/" target="_blank">
+                        <div class="d-flex flex-row align-items-center">
+                            <i class="fab fa-instagram fa-lg"></i>
+                            
+                        </div>
+                    </a>
+                    <a class="btn nav-item" href="https://www.instagram.com/emmadozengrapes/" target="_blank">
+                        <div class="d-flex flex-row align-items-center">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                            
+                        </div>
+                    </a>
+                    <a class="btn nav-item" href="https://www.instagram.com/emmadozengrapes/" target="_blank">
+                        <div class="d-flex flex-row align-items-center">
+                            <i class="fab fa-pinterest-p fa-lg"></i>
+                            
+                        </div>
+                    </a>
+                    <a class="btn nav-item" href="mailto: emmadozengrapes@gmail.com" class="email-link">
+                        <div class="d-flex flex-row align-items-center">
+                            <i class="far fa-envelope fa-lg"></i>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
