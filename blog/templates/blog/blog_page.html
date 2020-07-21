@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags static %}
+{% load wagtailcore_tags wagtailimages_tags static comments %}
 
 {% block body_class %}template-blogpage{% endblock %}
 
@@ -47,6 +47,73 @@
             </div>
         </div>
     {% endif %}
+
+    {% get_comment_list for page as comment_list %}
+    <ul>
+        
+    </ul>
+
+    <div class="row">
+
+        {% for comment in comment_list %}
+            <div class="col-12 mb-2 comment">
+                <p class="text-muted mb-0">{{comment.user_name}}</p>
+                <p class="text-muted mt-0"> {{comment.submit_date|date:'DATE_FORMAT'}} </p>
+                <p>
+                    {{comment.comment}}
+                <p>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            {% get_comment_form for page as form %}
+            <form action="{% comment_form_target %}" method="post" novalidate class="needs-validation">
+                {% csrf_token %}
+                <div class="row mb-2">
+                    <div class="col-md-6 col-sm-12 form-group">
+                        <input id="id_name" class="form-control" placeholder="Name" required="true" name="name"/>
+                        <div class="invalid-feedback">
+                            Please enter a valid display name
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 form-group">
+                        <input id="id_email" class="form-control" placeholder="Email" required="true" type="email" name="email"/>
+                        <div class="invalid-feedback">
+                            Please enter a valid email
+                        </div>
+                        <div class="container-fluid p-0">
+                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                Your email will not be displayed publicly
+                            </small>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12 form-group">
+                        <textarea id="id_comment" class="form-control" placeholder="Comment" required="true" name="comment"></textarea>
+                        <div class="invalid-feedback">
+                            Please enter a comment
+                        </div>
+                    </div>
+                </div>
+                
+                <input id="id_url" placeholder="Website" value="" name="url"/>
+                {{ form.honeypot }}
+                {{ form.content_type }}
+                {{ form.object_pk }}
+                {{ form.timestamp }}
+                {{ form.security_hash }}
+                <input type="hidden" name="next" value="{% pageurl page %}" />
+                <input class="btn btn-primary" type="submit" name="submit" value="Post">
+                <input class="btn btn-primary" type="submit" name="preview" value="Preview">
+            </form>
+        </div>
+    </div>
+    
     
 </div>
 {% endblock %}

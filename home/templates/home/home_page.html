@@ -17,8 +17,9 @@ template-homepage
             {% with post=post.specific %}
                 <div class="row mb-5">
                     {% if forloop.counter0|divisibleby:2 %}
-                        <div class="col-md-6 col-sm-12">
-                            {{post.preview_image}}
+                        <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
+                            {% image post.preview_image original as card_image %}
+                            <img src="{{card_image.url}}" height="auto" width="100%" />
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <h2>{{post.title}}</h2>
@@ -47,8 +48,9 @@ template-homepage
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
-                            {{post.preview_image}}
+                        <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
+                            {% image post.preview_image original as card_image %}
+                            <img src="{{card_image.url}}" height="auto" width="100%" />
                         </div>
                     {% endif %}
                     

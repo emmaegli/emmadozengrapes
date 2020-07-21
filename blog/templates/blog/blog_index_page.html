@@ -14,12 +14,12 @@
                     {% with post=post.specific %}
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="card">
-                                {% with post.main_image as main_image %}
+                                {% with post.preview_image as main_image %}
                                     {% if main_image %}
-                                    <div class="d-flex flex-row justify-content-center">
+                                    {% comment %} <div class="d-flex flex-row justify-content-center"> {% endcomment %}
                                         {% image main_image original as card_image %}
-                                        <img src="{{card_image.url}}" class="card-img-top"/>
-                                    </div>
+                                        <img src="{{card_image.url}}" height="350px" width="auto" />
+                                    {% comment %} </div> {% endcomment %}
                                         
                                     {% endif %}
                                 {% endwith %}

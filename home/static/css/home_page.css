@@ -8,6 +8,7 @@
 
 .preview-container {
   position: relative;
+  min-height: 100px;
 }
 
 .preview-container:after {

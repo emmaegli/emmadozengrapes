@@ -79,7 +79,18 @@ class BlogPage(Page):
             if block.block_type == "paragraph":
                 return block.value
         else:
-            return "<h1>No Preview for this blog</h1>"
+            return "No Preview for this blog"
+
+    def preview_image(self):
+        for block in self.body:
+            print(block)
+            if block.block_type == "image":
+                return block.value
+            elif block.block_type == "two_images":
+                print()
+                return block.value["left_image"]
+        else:
+            return None
 
     search_fields = Page.search_fields + [
         index.SearchField("title"),
