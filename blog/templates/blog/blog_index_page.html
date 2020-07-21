@@ -18,7 +18,7 @@
                                     {% if main_image %}
                                     {% comment %} <div class="d-flex flex-row justify-content-center"> {% endcomment %}
                                         {% image main_image original as card_image %}
-                                        <img src="{{card_image.url}}" height="350px" width="auto" />
+                                        <img src="{{card_image.url}}" class="card-img-top" />
                                     {% comment %} </div> {% endcomment %}
                                         
                                     {% endif %}

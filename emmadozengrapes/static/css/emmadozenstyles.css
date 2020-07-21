@@ -52,8 +52,8 @@
 }
 
 .homepage-subheader {
-  font-size: 2em;
-  font-family: Lora-Regular;
+  font-size: 4em;
+  font-family: Alysa;
   text-align: left;
 }
 
@@ -132,4 +132,13 @@
     font-size: 4em;
     top: -0.125em;
   }
+}
+
+.primary-button {
+  color: white;
+  background-color: #cb9b8c;
+}
+
+.primary-button:hover {
+  color: white;
 }

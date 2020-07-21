@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags  wagtailimages_tags %}
+
+{% block body_class %}template-aboutpage{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="homepage-header text-center">
+        about
+    </h1>
+    {% with blocks=self.body %}
+        {% for block in blocks %}
+                {%if block.block_type == 'image'%}
+                    <div class="row">
+                        <div class="col-12">
+                            {% image block.value width-800 as photo %}
+                            <img src="{{photo.url}}" height="auto" width="100%" style="padding-top: 15px; padding-bottom: 15px"/>
+                        </div>
+                    </div>
+                {% else %}
+                    <section class="block-{{ block.block_type }} pt-3 pb-3">
+                        {{ block }}
+                    </section>
+                {% endif %}
+        {% endfor %}
+    {% endwith %}
+</div>
+    
+{% endblock %}

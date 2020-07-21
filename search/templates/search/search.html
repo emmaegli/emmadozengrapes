@@ -1,38 +1,50 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-searchresults{% endblock %}
 
 {% block title %}Search{% endblock %}
 
 {% block content %}
-    <h1>Search</h1>
-
-    <form action="{% url 'search' %}" method="get">
-        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <input type="submit" value="Search" class="button">
-    </form>
-
-    {% if search_results %}
-        <ul>
+    <h1 class="homepage-header">
+        search results
+    </h1>
+    <div class="container">
+        {% if search_results %}
             {% for result in search_results %}
-                <li>
-                    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-                    {% if result.search_description %}
-                        {{ result.search_description }}
-                    {% endif %}
-                </li>
+                {% with post=result.specific %}
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="card">
+                            {% with post.preview_image as main_image %}
+                                {% if main_image %}
+                                    {% image main_image original as card_image %}
+                                    <img src="{{card_image.url}}" class="card-img-top" />
+                                {% endif %}
+                            {% endwith %}
+                            
+                            <div class="card-body">
+                            <h2 class="card-title loraitalic-font"><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+                            <p class="card-text lora-font">{{ post.intro }}</p>
+                            <p class="card-text lora-font">
+                                <i class="fas fa-calendar mr-2"></i>
+                                {{ post.date }}
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endwith %}
             {% endfor %}
-        </ul>
 
-        {% if search_results.has_previous %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-        {% endif %}
+            {% if search_results.has_previous %}
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+            {% endif %}
 
-        {% if search_results.has_next %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+            {% if search_results.has_next %}
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+            {% endif %}
+        {% else %}
+            No results found
         {% endif %}
-    {% elif search_query %}
-        No results found
-    {% endif %}
+    </div>
+    
 {% endblock %}

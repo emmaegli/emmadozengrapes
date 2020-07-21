@@ -34,7 +34,7 @@
     {% endwith %}
 
     {% if page.tags.all.count %}
-        <div class="row">
+        <div class="row my-5">
             <div class="col-12 d-flex flex-row flex-wrap">
                 {% for tag in page.tags.all %}
                     <a href="/blog?tag={{ tag }}" class="tag-link">
@@ -48,33 +48,19 @@
         </div>
     {% endif %}
 
-    {% get_comment_list for page as comment_list %}
-    <ul>
-        
-    </ul>
+    <hr />
 
-    <div class="row">
-
-        {% for comment in comment_list %}
-            <div class="col-12 mb-2 comment">
-                <p class="text-muted mb-0">{{comment.user_name}}</p>
-                <p class="text-muted mt-0"> {{comment.submit_date|date:'DATE_FORMAT'}} </p>
-                <p>
-                    {{comment.comment}}
-                <p>
-            </div>
-        {% endfor %}
-
-    </div>
-
-    <div class="row">
+    <div class="row my-3">
         <div class="col-12">
+            <h1 class="alysa-font" style="font-size: 4em; text-align: center">Comments</h1>
+        </div>
+        <div class="col-12 comment">
             {% get_comment_form for page as form %}
             <form action="{% comment_form_target %}" method="post" novalidate class="needs-validation">
                 {% csrf_token %}
                 <div class="row mb-2">
                     <div class="col-md-6 col-sm-12 form-group">
-                        <input id="id_name" class="form-control" placeholder="Name" required="true" name="name"/>
+                        <input id="id_name" class="form-control" placeholder="Name" required="true" name="name" maxlength="50"/>
                         <div class="invalid-feedback">
                             Please enter a valid display name
                         </div>
@@ -94,7 +80,7 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-12 form-group">
-                        <textarea id="id_comment" class="form-control" placeholder="Comment" required="true" name="comment"></textarea>
+                        <textarea id="id_comment" class="form-control" placeholder="Comment" required="true" name="comment" maxlength="3000"></textarea>
                         <div class="invalid-feedback">
                             Please enter a comment
                         </div>
@@ -108,10 +94,25 @@
                 {{ form.timestamp }}
                 {{ form.security_hash }}
                 <input type="hidden" name="next" value="{% pageurl page %}" />
-                <input class="btn btn-primary" type="submit" name="submit" value="Post">
-                <input class="btn btn-primary" type="submit" name="preview" value="Preview">
+                <input class="btn primary-button" type="submit" name="submit" value="Post">
+                <input class="btn primary-button" type="submit" name="preview" value="Preview">
             </form>
         </div>
+    </div>
+
+    {% get_comment_list for page as comment_list %}
+    <div class="row">
+
+        {% for comment in comment_list %}
+            <div class="col-12 mb-2">
+                <p class="text-muted mb-0">{{comment.user_name}}</p>
+                <p class="text-muted mt-0"> {{comment.submit_date|date:'DATE_FORMAT'}} </p>
+                <p class="text-break">
+                    {{comment.comment}}
+                <p>
+            </div>
+        {% endfor %}
+
     </div>
     
     

@@ -83,11 +83,9 @@ class BlogPage(Page):
 
     def preview_image(self):
         for block in self.body:
-            print(block)
             if block.block_type == "image":
                 return block.value
             elif block.block_type == "two_images":
-                print()
                 return block.value["left_image"]
         else:
             return None

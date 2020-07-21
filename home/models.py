@@ -17,12 +17,14 @@ class HomePage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
-        recent_wine_reviews = BlogPage.objects.filter(
-            categories__name="Wine Reviews"
-        ).reverse()[:3]
-        context["recent_wine_reviews"] = recent_wine_reviews
-        context["recent_blog_posts"] = BlogPage.objects.exclude(
-            id__in=recent_wine_reviews.values_list("id", flat=True)
-        ).order_by("-id")[:3]
+        recent_wine_review = (
+            BlogPage.objects.filter(categories__name="Wine Reviews").reverse().first()
+        )
+        context["recent_wine_review"] = recent_wine_review
+        recent_blog_posts = BlogPage.objects.order_by("-id")
+        if recent_wine_review:
+            recent_blog_posts = recent_blog_posts.exclude(id=recent_wine_review.id)
+
+        context["recent_blog_posts"] = recent_blog_posts[:2]
 
         return context

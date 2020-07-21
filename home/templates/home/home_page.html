@@ -61,5 +61,36 @@ template-homepage
                 {% endif %}
             {% endwith %}
         {% endfor %}
+
+        {% if recent_wine_review %}
+        <h1 class="homepage-subheader">recent wine review</h1>
+        <hr />
+        <div class="row">
+            {% with post=recent_wine_review.specific %}
+                <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
+                    {% image post.preview_image original as card_image %}
+                    <img src="{{card_image.url}}" height="auto" width="100%" />
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h2>{{post.title}}</h2>
+                    <p class="text-muted mb-1">{{post.date}}</p>
+                    <p class="text-muted">{{post.author}}</p>
+                    <div class="preview-container">
+                        {{post.blog_preview}}
+                    </div>
+                    <div class="d-flex flex-row pt-2">
+                        <a class="btn read-more-button" href="{% pageurl post %}">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+            {% endwith %}
+        </div>
+
+        {% endif %}
+
+        
+
+        
     </div>
 {% endblock %}
