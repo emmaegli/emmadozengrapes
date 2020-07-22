@@ -1,0 +1,61 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-ingress
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`emmadozengrapes.com`)
+      kind: Rule
+      services:
+        - name: django
+          port: 5000
+      middlewares:
+        - name: cors-headers
+        - name: http-redirect
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tls-traefik-ingress
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`emmadozengrapes.com`)
+      kind: Rule
+      priority: 1
+      services:
+        - name: django
+          port: 5000
+      middlewares:
+        - name: cors-headers
+  tls:
+    certResolver: letsencrypt
+    # We need to specify that we only need the api.skirmish.pro domain here because if we
+    # dont specify, Traefik uses the domains from our Host rule above.
+    # Because we are hosting Skirmish's frontend on AWS Cloudfront (for now), we don't need this cert
+    # to include that because Cloudfront handles that for us
+    # https://docs.traefik.io/https/acme/#domain-definition
+    domains:
+    - main: emmadozengrapes.com
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard
+spec:
+spec:
+  entryPoints:
+    - admin
+  routes:
+    - match: Host(`emmadozengrapes.com`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService

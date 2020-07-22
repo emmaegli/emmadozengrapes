@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: django-migrate
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: django
+          image: skirmish_production_django
+          imagePullPolicy: Never
+          command: ["python", "manage.py", "migrate", "--no-input"]
+          envFrom:
+            - configMapRef:
+                name: django-env
+            - configMapRef:
+                name: postgres-env
+          env:
+            - name: DATABASE_URL
+              value: "postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(POSTGRES_DB)"
+            - name: CELERY_BROKER_URL
+              value: "$(REDIS_URL)"

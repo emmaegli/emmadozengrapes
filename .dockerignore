@@ -1,0 +1,9 @@
+.*
+!.coveragerc
+!.env
+!.pylintrc
+static/
+media/
+env/
+staticfiles/
+docs/

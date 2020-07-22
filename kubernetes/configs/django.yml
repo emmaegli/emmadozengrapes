@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    name: django-env
+  name: django-env
+data:
+  # Gunicorn
+  WEB_CONCURRENCY: "4"
+  # Django
+  DJANGO_ACCOUNT_ALLOW_REGISTRATION: "True"
+  DJANGO_ADMIN_URL: portal/
+  DJANGO_ALLOWED_HOSTS: ".emmadozengrapes.com"
+  DJANGO_AWS_ACCESS_KEY_ID:
+  DJANGO_AWS_SECRET_ACCESS_KEY:
+  DJANGO_AWS_STORAGE_BUCKET_NAME: emmadozengrapes-static
+  DJANGO_SECRET_KEY:
+  DJANGO_SECURE_SSL_REDIRECT: "True"
+  DJANGO_SERVER_EMAIL: "no-reply@emmadozengrapes.com"
+  DJANGO_SETTINGS_MODULE: config.settings.production
+
+  MAILGUN_API_KEY: ""
+  MAILGUN_DOMAIN: ""
+
+  # 2FA
+  TWO_FACTOR_KEY: "IRQQNU7BC54LJCMH"

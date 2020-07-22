@@ -1,0 +1,33 @@
+# General
+# ------------------------------------------------------------------------------
+# DJANGO_READ_DOT_ENV_FILE=True
+DJANGO_SETTINGS_MODULE=config.settings.production
+DJANGO_SECRET_KEY=Al5gqRlJi7wwf10cqUTJRgQFzxWGrs1SUkyjxzwkSUfhtSr06PhzLCVMzDg3eLdE
+DJANGO_ADMIN_URL=portal/
+DJANGO_ALLOWED_HOSTS=.emmadozengrapes.com
+DATABASE_URL=
+
+# Security
+# ------------------------------------------------------------------------------
+# TIP: better off using DNS, however, redirect is OK too
+DJANGO_SECURE_SSL_REDIRECT=False
+
+# Email
+# ------------------------------------------------------------------------------
+MAILGUN_API_KEY=
+DJANGO_SERVER_EMAIL=
+MAILGUN_DOMAIN=
+
+# AWS
+# ------------------------------------------------------------------------------
+DJANGO_AWS_ACCESS_KEY_ID=
+DJANGO_AWS_SECRET_ACCESS_KEY=
+DJANGO_AWS_STORAGE_BUCKET_NAME=emmadozengrapes-static
+
+# Gunicorn
+# ------------------------------------------------------------------------------
+WEB_CONCURRENCY=4
+
+# Two Factor Auth
+# ------------------------------------------------------------------------------
+TWO_FACTOR_KEY=IRQQNU7BC54LJCMH

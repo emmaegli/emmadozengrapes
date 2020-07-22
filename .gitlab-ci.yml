@@ -1,0 +1,32 @@
+stages:
+  - lint
+  - test
+
+variables:
+  POSTGRES_USER: "skirmish"
+  POSTGRES_PASSWORD: ""
+  POSTGRES_DB: "test_skirmish"
+
+black:
+  stage: lint
+  image: python:3.7
+  before_script:
+    - pip install -q black
+  script:
+    - black --check ./api --config ./api/pyproject.toml
+
+pytest:
+  stage: test
+  image: python:3.7
+  tags:
+    - docker
+  services:
+    - postgres:11
+  variables:
+    DATABASE_URL: pgsql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres/$POSTGRES_DB
+
+  before_script:
+    - pip install -r ./api/requirements/local.txt
+
+  script:
+    - pytest ./api

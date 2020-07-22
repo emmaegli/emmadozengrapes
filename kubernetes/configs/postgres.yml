@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-env
+  labels:
+    name: postgres-env
+data:
+  POSTGRES_DB: blog
+  POSTGRES_HOST: emmadozengrapes-postgres
+  POSTGRES_PORT: "5432"

@@ -1,0 +1,15 @@
+# Django
+# ------------------------------------------------------------------------------
+django==3.0.7  # pyup: < 3.1  # https://www.djangoproject.com/
+django-environ==0.4.5  # https://github.com/joke2k/django-environ
+django-model-utils==4.0.0  # https://github.com/jazzband/django-model-utils
+Pillow==7.0.0  # https://github.com/python-pillow/Pillow
+pytz==2019.3  # https://github.com/stub42/pytz
+python-slugify==4.0.0  # https://github.com/un33k/python-slugify
+argon2-cffi==19.2.0  # https://github.com/hynek/argon2_cffi
+django-storages[boto3]==1.8  # https://github.com/jschneier/django-storages
+
+# Wagtail
+# ------------------------------------------------------------------------------
+wagtail>=2.9,<2.10
+django-contrib-comments>=1.9

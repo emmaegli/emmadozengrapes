@@ -110,6 +110,10 @@
                 <p class="text-break">
                     {{comment.comment}}
                 <p>
+
+                {% if not forloop.last %}
+                    <hr />
+                {% endif %}
             </div>
         {% endfor %}
 

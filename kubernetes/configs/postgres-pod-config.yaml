@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-pod-config # The name must be same as configured in the values file earlier
+data:
+  BACKUP_SCHEDULE: "0 */12 * * *" # Schedule a base backup every 12 hours; you can customise as you wish
+  USE_WALG_BACKUP: "true" # Use the golang backup tool (faster)
+  BACKUP_NUM_TO_RETAIN: "14" # For 2 backups per day, keep 7 days of base backups
+  AWS_ACCESS_KEY_ID:
+  AWS_SECRET_ACCESS_KEY:
+  AWS_ENDPOINT: https://s3-us-east-1.amazonaws.com/emmadozengrapes-postgres
+  AWS_REGION: us-east-1
+  WALG_DISABLE_S3_SSE: "true" # I disable this because it's not supported by Scaleway

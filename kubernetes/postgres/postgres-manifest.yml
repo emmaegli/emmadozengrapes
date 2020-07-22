@@ -1,0 +1,19 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: emmadozengrapes-postgres
+spec:
+  teamId: "emmadozengrapes"
+  numberOfInstances: 2
+  users: # Application/Robot users
+    emma:
+      - superuser
+      - login
+      - createdb
+  databases:
+    blog: emma
+  postgresql:
+    version: "12"
+  volume:
+    size: 5Gi
+  enableLogicalBackup: true
