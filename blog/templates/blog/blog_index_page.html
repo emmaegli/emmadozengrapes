@@ -6,13 +6,12 @@
 
 {% block content %}
     <div class="container-fluid align-items-center">
-        <h1 class="homepage-header">{{ page.title }}</h1>
-        <h5 class="homepage-subheader" style="text-align: center;">{{ page.intro|richtext }}</h5>
+        <h1 class="header alysa-font">{{ page.title }}</h1>
         <div class="container">
             <div class="row">
-                {% for post in page.get_children.reverse %}
+                {% for post in blog_entries %}
                     {% with post=post.specific %}
-                        <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="col-md-4 col-sm-6 col-xs-12 mb-2">
                             <div class="card">
                                 {% with post.preview_image as main_image %}
                                     {% if main_image %}

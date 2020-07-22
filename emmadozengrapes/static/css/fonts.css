@@ -1,0 +1,31 @@
+@font-face {
+  font-family: Alysa;
+  src: url(../assets/alysa.otf);
+}
+
+@font-face {
+  font-family: Cinzel;
+  src: url(../assets/Cinzel-Regular.ttf);
+}
+
+@font-face {
+  font-family: Lora-Regular;
+  src: url(../assets/Lora-Regular.ttf);
+}
+
+@font-face {
+  font-family: Lora-Italic;
+  src: url(../assets/Lora-Italic.ttf);
+}
+
+.alysa-font {
+  font-family: Alysa;
+}
+
+.loraitalic-font {
+  font-family: Lora-Italic;
+}
+
+.lora-font {
+  font-family: Lora-Regular;
+}

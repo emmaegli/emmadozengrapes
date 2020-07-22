@@ -1,3 +1,10 @@
+.blog-header {
+  position: relative;
+  z-index: auto;
+
+  font-size: 3em;
+}
+
 .tag {
   display: flex;
   flex-direction: row;

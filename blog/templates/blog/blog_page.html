@@ -11,7 +11,7 @@
 {% block content %}
 <div class="container align-items-center">
 
-    <h1 class="blogpost-header">{{page.title}}</h1>
+    <h1 class="header loraitalic-font blog-header">{{page.title}}</h1>
 
     <p class="text-muted mb-2">{{page.date}}</p>
     <p class="text-muted mt-2">{{page.author}}</p>
@@ -48,11 +48,11 @@
         </div>
     {% endif %}
 
-    <hr />
-
+    <hr style="margin: 0 -15px"/>
+    
     <div class="row my-3">
         <div class="col-12">
-            <h1 class="alysa-font" style="font-size: 4em; text-align: center">Comments</h1>
+            <h1 class="alysa-font" style="font-size: 4em; text-align: center">comments</h1>
         </div>
         <div class="col-12 comment">
             {% get_comment_form for page as form %}

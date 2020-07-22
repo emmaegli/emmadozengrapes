@@ -24,6 +24,9 @@
             integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/emmadozengrapes.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/emmadozenstyles.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome-all.min.css' %}">
@@ -54,25 +57,26 @@
         <script>
             const clamp = (number, min, max) => {
                 return Math.min(Math.max(number, min), max);
-            }
+            };
 
-            
+            const scaleHeader = (window, navbar, header) => {
+                const divisor = header.offset().top;
+                if (navbar.hasClass('show') || navbar.hasClass("collapsing")) {
+                    header.css('z-index', 1);
+                } else {
+                    header.css('z-index', 9999);
+                }
+                var scrollTop = window.scrollTop();
+                const scale = clamp((header.offset().top - window.scrollTop()) / divisor, 0.5, 1);
+                header.css('transform', 'scale(' + scale + ')');
+            };
 
             $(document).ready(() => {
                 const $window = $(window);
-                const $header = $(".homepage-header");
+                const $header = $(".header:not(.blog-header)");
                 const $navbar = $('#navbarNav');
-                const divisor = $header.offset().top;
-                $window.scroll(function() {
-                    if ($navbar.hasClass('show') || $navbar.hasClass("collapsing")) {
-                        $header.css('z-index', 1);
-                    } else {
-                        $header.css('z-index', 9999);
-                    }
-                    var scrollTop = $window.scrollTop();
-                    const scale = clamp(($header.offset().top - $window.scrollTop()) / divisor, 0.5, 1);
-                    $header.css('transform', 'scale(' + scale + ')');
-                });   
+                scaleHeader($window, $navbar, $header);
+                $window.scroll(() => scaleHeader($window, $navbar, $header));   
             });
             
         </script>
