@@ -10,7 +10,7 @@ services:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
     image: emmadozengrapes_local_django
-    container_name: django
+    container_name: emmadozengrapes
     depends_on:
       - postgres
     volumes:
@@ -26,7 +26,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: emmadozengrapes_local_postgres
+    image: emmadozengrapes_production_postgres
     container_name: postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data
@@ -35,3 +35,7 @@ services:
       - ./.envs/.local/.postgres
     ports:
       - "5432:5432"
+
+  redis:
+    image: redis:5.0
+    container_name: redis

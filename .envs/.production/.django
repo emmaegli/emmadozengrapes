@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 # DJANGO_READ_DOT_ENV_FILE=True
 DJANGO_SETTINGS_MODULE=config.settings.production
-DJANGO_SECRET_KEY=Al5gqRlJi7wwf10cqUTJRgQFzxWGrs1SUkyjxzwkSUfhtSr06PhzLCVMzDg3eLdE
+DJANGO_SECRET_KEY=
 DJANGO_ADMIN_URL=portal/
 DJANGO_ALLOWED_HOSTS=.emmadozengrapes.com
 DATABASE_URL=
@@ -14,6 +14,7 @@ DJANGO_SECURE_SSL_REDIRECT=False
 
 # Email
 # ------------------------------------------------------------------------------
+DJANGO_EMAIL_BACKEND=django_ses.SESBackend
 MAILGUN_API_KEY=
 DJANGO_SERVER_EMAIL=
 MAILGUN_DOMAIN=
@@ -30,4 +31,4 @@ WEB_CONCURRENCY=4
 
 # Two Factor Auth
 # ------------------------------------------------------------------------------
-TWO_FACTOR_KEY=IRQQNU7BC54LJCMH
+TWO_FACTOR_KEY=

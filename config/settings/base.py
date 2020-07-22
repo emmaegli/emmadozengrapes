@@ -7,7 +7,8 @@ import environ
 
 ROOT_DIR = environ.Path(__file__) - 3
 # (skirmish/config/settings/base.py - 3 = skirmish/)
-APPS_DIR = ROOT_DIR.path("KanieckiBlog")
+APPS_DIR = ROOT_DIR.path("emmadozengrapes")
+
 PROJECT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 )
@@ -79,6 +80,7 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
 ]
 
 WAGTAIL_APPS = [
@@ -98,9 +100,10 @@ WAGTAIL_APPS = [
 THIRD_PARTY_APPS = [
     "modelcluster",
     "taggit",
+    "django_comments",
 ]
 
-LOCAL_APPS = ["home", "search", "blog"]
+LOCAL_APPS = ["home", "search", "blog", "about"]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = LOCAL_APPS + WAGTAIL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
 
@@ -110,7 +113,7 @@ INSTALLED_APPS = LOCAL_APPS + WAGTAIL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
 ##############################################################################
 """
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "KanieckiBlog.contrib.sites.migrations"}
+MIGRATION_MODULES = {"sites": "emmadozengrapes.contrib.sites.migrations"}
 
 """
 ##############################################################################
@@ -152,7 +155,6 @@ AUTH_PASSWORD_VALIDATORS = [
 """
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
-    "KanieckiBlog.middleware.query_params_middleware.PrepareQueryParametersMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -266,7 +268,10 @@ EMAIL_TIMEOUT = 5
 # Django Admin URL.
 ADMIN_URL = "portal/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("""Kyle Kaniecki""", "kanieckikyle@gmail.com")]
+ADMINS = [
+    ("""Kyle Kaniecki""", "kanieckikyle@gmail.com"),
+    ("""Emma Egli""", "egliemma@gmail.com"),
+]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 
@@ -300,9 +305,9 @@ LOGGING = {
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "KanieckiBlog"
+WAGTAIL_SITE_NAME = "emmadozengrapes"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = "https://kylekaniecki.com"
+BASE_URL = "https://emmadozengrapes.com"
 
