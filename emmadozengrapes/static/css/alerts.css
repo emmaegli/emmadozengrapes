@@ -1,0 +1,11 @@
+.alert-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.alert-container > .alert {
+  width: 100%;
+}

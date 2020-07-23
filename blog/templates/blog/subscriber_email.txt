@@ -1,0 +1,16 @@
+{% load wagtailcore_tags %}
+
+Hello wine lover!
+
+Happy wine Wednesday!! Here are some of my wine reviews and blog posts from this past week. 
+I hope that you are inspired to try something new. As always, thank you for tagging 
+along on my journey.
+
+Happy tasting!
+
+Emma
+
+Blogs
+{% for blog in new_blogs %}
+    https://emmadozeneggs.com{% pageurl blog %}
+{% endfor %}

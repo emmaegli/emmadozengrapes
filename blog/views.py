@@ -1,12 +1,13 @@
 from django.db import models
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
 
 from blog.forms import BlogSubscriberRegisterForm
-from blog.models import BlogSubscriber
+from blog.models import BlogSubscriber, BlogPage
+from django.utils import timezone
 
 # Create your views here.
 

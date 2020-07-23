@@ -4,6 +4,8 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+# start cron
+cron
 
 python manage.py migrate --noinput
 python manage.py collectstatic --no-input

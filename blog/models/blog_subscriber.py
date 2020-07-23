@@ -22,16 +22,15 @@ class BlogSubscriber(models.Model):
     ]
 
     def send_registration_confirmation(self):
-        # msg_plain = render_to_string("templates/blog/subscription_confirmation.txt")
-        # msg_html = render_to_string("templates/blog/subscription_confirmation.html",)
-        # send_mail(
-        #     "emma dozen eggs newsletter subscription confirmation",
-        #     msg_plain,
-        #     settings.DEFAULT_FROM_EMAIL,
-        #     [self.email],
-        #     html_message=msg_html,
-        # )
-        pass
+        msg_plain = render_to_string("blog/subscription_confirmation.txt")
+        msg_html = render_to_string("blog/subscription_confirmation.html")
+        send_mail(
+            "Emma Dozen Eggs Subscription Confirmation",
+            msg_plain,
+            settings.DEFAULT_FROM_EMAIL,
+            [self.email],
+            html_message=msg_html,
+        )
 
     @property
     def email(self) -> str:

@@ -1,0 +1,8 @@
+Thank you for subscribing to emma dozen grapes!
+
+You will now receive the weekly newsletter every Wednesday. If you did not sign up for this
+newsletter, or wish to cancel the subscription, please unsubscribe using the following link:
+
+https://emmadozengrapes.com{% url 'unsubscribe_blog' %}
+
+Happy tasting!

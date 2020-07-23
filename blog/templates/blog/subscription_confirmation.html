@@ -1,5 +1,5 @@
 
-{% load static wagtailcore_tags wagtailimages_tags %}
+{% load static %}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -37,60 +37,27 @@
                         <table width="100%">
                             <tr>
                                 <td class="inner contents">
-                                    <p>Hello wine lover! </p>
                                     <p>
-                                        Happy wine Wednesday!! Here are some of my wine reviews and blog posts from this past week. 
-                                        I hope that you are inspired to try something new. As always, thank you for tagging 
-                                        along on my journey.
+                                        Thank you for subscribing to Emma Dozen Grapes!
                                     </p>
                                     <p>
-                                        Happy tasting!
+                                        You will now receive the newsletter every Wednesday. If you did not sign up for this
+                                        newsletter, or wish to cancel the subscription, please unsubscribe using the following link:
+                                    </p>
+                                    <br />
+                                    <p>
+                                        <a href="https://emmadozengrapes.com{% url 'unsubscribe_blog' %}">
+                                            Unsubscribe
+                                        </a>
                                         
                                     </p>
+                                    <br />
                                     <p>
-                                        Emma
+                                        Happy tasting!
                                     </p>
                                 </td>
                             </tr>
                         </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="two-column">
-                        <!--[if (gte mso 9)|(IE)]>
-                        <table width="100%">
-                        <tr>
-                        <td width="50%" valign="top">
-                        <![endif]-->
-                        {% for blog in new_blogs %}
-                            <div class="column">
-                                <table width="100%">
-                                    <tr>
-                                        <td class="inner">
-                                            <table class="contents">
-                                                <tr>
-                                                    <td>
-                                                        {% image blog.preview_image original as image%}
-                                                        <img src="{{image.url}}" width="280" alt="" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text">
-                                                        {{ blog.blog_preview | richtext }}
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding-top: 15px">
-                                                        <a href="{% pageurl blog %}">Read More</a>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        {% endfor %}
                     </td>
                 </tr>
                 <tr>

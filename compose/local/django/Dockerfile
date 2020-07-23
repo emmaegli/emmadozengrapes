@@ -10,6 +10,7 @@ RUN apt-get update \
   # Translations dependencies
   && apt-get install -y gettext \
   && apt-get install -y git \
+  && apt-get -y install -qq --force-yes cron \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
@@ -25,6 +26,19 @@ RUN chmod +x /entrypoint
 COPY ./compose/local/django/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
+
+# Copy cron file to the cron.d directory
+COPY crontab/send_subscriber_email /etc/cron.d/send_subscriber_email
+RUN sed -i 's/\r$//g' /etc/cron.d/send_subscriber_email
+
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/send_subscriber_email
+
+# Apply cron job
+RUN crontab /etc/cron.d/send_subscriber_email
 
 WORKDIR /app
 
