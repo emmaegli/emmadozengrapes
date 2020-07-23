@@ -1,0 +1,14 @@
+<div class="container-fluid mt-3 pt-2" style="background-color: rgb(253 251 251); margin-bottom: -1rem !important;">
+    <h1 class="text-center alysa-font">subscribe</h1>
+    <div class="row justify-content-center align-items-center">
+        <form class="form-group row align-items-center needs-validation" action="/blog/subscribe/" method="post">
+            {% csrf_token %}
+            <div class="col-md-auto col-sm-12">
+                <input id="id_email" type="email" class="form-control" placeholder="Email Address" name="email" required="true">
+            </div>
+            <div class="col-md-auto col-sm-12 d-flex align-items-center justify-content-center py-2">
+                <button type="submit" class="btn primary-button">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

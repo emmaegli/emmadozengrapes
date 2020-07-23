@@ -45,6 +45,10 @@
                 {% block content %}{% endblock %}
             </div>
 
+            {% block subscribe %}
+                {% include 'blog/subscribe.html' %}
+            {% endblock %}
+
             {% include 'footer.html' %}
         </div>
         
