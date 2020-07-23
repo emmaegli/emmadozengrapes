@@ -26,5 +26,10 @@ class BlogIndexPage(Page):
         if tag:
             blog_entries = blog_entries.filter(tags__name=tag)
 
+        # category
+        category = request.GET.get("category")
+        if category:
+            blog_entries = blog_entries.filter(categories__name=category)
+
         context["blog_entries"] = blog_entries.order_by("-date")
         return context

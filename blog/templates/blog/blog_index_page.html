@@ -33,7 +33,7 @@
                                 <div class="row">
                                     <div class="col-12 d-flex flex-row flex-wrap">
                                         {% for category in post.categories.all %}
-                                            <a href="/blog?category={{ category }}" class="tag-link">
+                                            <a href="/blog?category={{ category|urlencode }}" class="tag-link">
                                                 <div class="tag loraitalic-font">
                                                     <i class="fas fa-tag mr-1 d-flex align-items-center justify-content-center"></i>
                                                     {{ category }}
