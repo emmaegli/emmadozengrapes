@@ -5,29 +5,6 @@
   font-size: 3em;
 }
 
-.tag {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-
-  padding: 5px;
-  border: 1px #cb9b8c solid;
-  border-radius: 10px;
-  margin: 3px;
-  background-color: #cb9b8c;
-  color: #333333;
-}
-.tag-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.tag-link:hover {
-  text-decoration: none;
-  color: inherit;
-}
-
 .gallery-image-container {
   padding: 5px;
 }
