@@ -5,7 +5,6 @@ DJANGO_SETTINGS_MODULE=config.settings.production
 DJANGO_SECRET_KEY=
 DJANGO_ADMIN_URL=portal/
 DJANGO_ALLOWED_HOSTS=.emmadozengrapes.com
-DATABASE_URL=
 
 # Security
 # ------------------------------------------------------------------------------

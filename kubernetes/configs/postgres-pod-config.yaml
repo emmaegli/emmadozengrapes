@@ -8,6 +8,5 @@ data:
   BACKUP_NUM_TO_RETAIN: "14" # For 2 backups per day, keep 7 days of base backups
   AWS_ACCESS_KEY_ID:
   AWS_SECRET_ACCESS_KEY:
-  AWS_ENDPOINT: https://s3-us-east-1.amazonaws.com/emmadozengrapes-postgres
+  AWS_ENDPOINT: https://s3.us-east-1.amazonaws.com/emmadozengrapes-postgres
   AWS_REGION: us-east-1
-  WALG_DISABLE_S3_SSE: "true" # I disable this because it's not supported by Scaleway
