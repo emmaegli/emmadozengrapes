@@ -4,7 +4,7 @@ metadata:
   name: emmadozengrapes-postgres
 spec:
   teamId: "emmadozengrapes"
-  numberOfInstances: 2
+  numberOfInstances: 1
   users: # Application/Robot users
     emma:
       - superuser

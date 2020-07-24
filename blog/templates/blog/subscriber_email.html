@@ -70,33 +70,41 @@ https://webdesign.tutsplus.com/tutorials/creating-a-future-proof-responsive-emai
                         <td width="50%" valign="top">
                         <![endif]-->
                         {% for blog in new_blogs %}
-                            <div class="column">
-                                <table width="100%">
-                                    <tr>
-                                        <td class="inner">
-                                            <table class="contents">
-                                                <tr>
-                                                    <td>
-                                                        {% image blog.preview_image original as image%}
-                                                        <img src="{{image.url}}" width="280" alt="" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text">
-                                                        {{ blog.blog_preview | richtext }}
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding-top: 15px">
-                                                        <a href="{% pageurl blog %}">Read More</a>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                            {% with blog=blog.specific %}
+                                <div class="column">
+                                    <table width="100%">
+                                        <tr>
+                                            <td class="inner">
+                                                <table class="contents">
+                                                    <tr>
+                                                        <td>
+                                                            <h1>{{blog.title}}</h1>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            {% image blog.preview_image original as image%}
+                                                            <img src="{{image.url}}" width="280" alt="" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text">
+                                                            {{ blog.blog_preview | richtext }}
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding-top: 15px">
+                                                            <a href="https://emmadozengrapes.com{% pageurl blog %}">Read More</a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            {% endwith %}
+                            
                         {% endfor %}
                     </td>
                 </tr>
@@ -108,7 +116,11 @@ https://webdesign.tutsplus.com/tutorials/creating-a-future-proof-responsive-emai
                                     <p style="text-align: center">
                                         © 2020 emma dozen grapes
                                     </p>
-                                    <p></p>
+                                    <p style="text-align: center">
+                                        <a href="https://emmadozengrapes.com{% url 'unsubscribe_blog' %}?token={{ token }}">
+                                            Unsubscribe
+                                        </a>
+                                    </p>
                                 </td>
                             </tr>
                         </table>

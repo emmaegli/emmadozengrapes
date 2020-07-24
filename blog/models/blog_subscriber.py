@@ -22,10 +22,14 @@ class BlogSubscriber(models.Model):
     ]
 
     def send_registration_confirmation(self):
-        msg_plain = render_to_string("blog/subscription_confirmation.txt")
-        msg_html = render_to_string("blog/subscription_confirmation.html")
+        msg_plain = render_to_string(
+            "blog/subscription_confirmation.txt", {"token": self.email}
+        )
+        msg_html = render_to_string(
+            "blog/subscription_confirmation.html", {"token": self.email}
+        )
         send_mail(
-            "Emma Dozen Eggs Subscription Confirmation",
+            "Emma Dozen Grapes Subscription Confirmation",
             msg_plain,
             settings.DEFAULT_FROM_EMAIL,
             [self.email],

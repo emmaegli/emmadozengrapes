@@ -19,7 +19,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: emmadozengrapes
-          image: 129087907154.dkr.ecr.us-east-1.amazonaws.com/kaniecki-blog:latest
+          image: 129087907154.dkr.ecr.us-east-1.amazonaws.com/emmadozengrapes:latest
           imagePullPolicy: Always
           resources: {}
           args:
@@ -95,7 +95,6 @@ spec:
                 configMapKeyRef:
                   key: POSTGRES_HOST
                   name: postgres-env
-
             - name: POSTGRES_PORT
               valueFrom:
                 configMapKeyRef:
@@ -111,12 +110,13 @@ spec:
                 secretKeyRef:
                   name: emma.emmadozengrapes-postgres.credentials.postgresql.acid.zalan.do
                   key: password
-              valueFrom:
-                configMapKeyRef:
-                  key: TWO_FACTOR_KEY
-                  name: django-env
             - name: WEB_CONCURRENCY
               valueFrom:
                 configMapKeyRef:
                   key: WEB_CONCURRENCY
+                  name: django-env
+            - name: REDIS_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_URL
                   name: django-env

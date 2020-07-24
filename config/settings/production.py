@@ -92,36 +92,21 @@ AWS_S3_OBJECT_PARAMETERS = {
 #  https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
 AWS_DEFAULT_ACL = None
 
+# region http://stackoverflow.com/questions/10390244/
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
 AWS_S3_REGION_NAME = env("DJANGO_AWS_S3_REGION_NAME", default=None)
-
-# region http://stackoverflow.com/questions/10390244/
-# Full-fledge class: https://stackoverflow.com/a/18046120/104731
-from storages.backends.s3boto3 import S3Boto3Storage  # noqa E402
-
-
-class StaticRootS3Boto3Storage(S3Boto3Storage):
-    location = "static"
-    default_acl = "public-read"
-
-
-class MediaRootS3Boto3Storage(S3Boto3Storage):
-    location = "media"
-    file_overwrite = False
-    default_acl = "public-read"
-
-
 # endregion
+
 
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = "config.settings.production.StaticRootS3Boto3Storage"
+STATICFILES_STORAGE = "emmadozengrapes.utils.storages.StaticRootS3Boto3Storage"
 COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 STATIC_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/"
 
 # MEDIA
 # ------------------------------------------------------------------------------
-DEFAULT_FILE_STORAGE = "config.settings.production.MediaRootS3Boto3Storage"
+DEFAULT_FILE_STORAGE = "emmadozengrapes.utils.storages.MediaRootS3Boto3Storage"
 MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/"
 
 # TEMPLATES
@@ -140,6 +125,8 @@ TEMPLATES[-1]["OPTIONS"]["loaders"] = [  # type: ignore[index] # noqa F405
 # EMAIL
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["django_ses"]  # noqa F405
+
+EMAIL_BACKEND = "django_ses.SESBackend"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
 DEFAULT_FROM_EMAIL = env(
@@ -209,4 +196,4 @@ LOGGING = {
 
 # Two Factor Auth
 # ------------------------------------------------------------------------------
-TWO_FACTOR_KEY = env("TWO_FACTOR_KEY")
+TWO_FACTOR_KEY = env("TWO_FACTOR_KEY", default=None)

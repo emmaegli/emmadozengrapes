@@ -10,7 +10,7 @@ spec:
     - match: Host(`emmadozengrapes.com`)
       kind: Rule
       services:
-        - name: django
+        - name: emmadozengrapes
           port: 5000
       middlewares:
         - name: cors-headers
@@ -30,7 +30,7 @@ spec:
       kind: Rule
       priority: 1
       services:
-        - name: django
+        - name: emmadozengrapes
           port: 5000
       middlewares:
         - name: cors-headers

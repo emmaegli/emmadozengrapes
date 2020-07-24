@@ -43,21 +43,22 @@ class Command(BaseCommand):
         # then send the update email
         if new_blogs.exists():
             to_emails = [str(sub) for sub in BlogSubscriber.objects.all()]
-            msg_plain = render_to_string(
-                "blog/subscriber_email.txt", {"new_blogs": new_blogs}
-            )
-            msg_html = render_to_string(
-                "blog/subscriber_email.html", {"new_blogs": new_blogs}
-            )
 
             send_mass_html_mail(
                 (
                     (
                         "Emma Dozen Grapes Weekly Newsletter",
-                        msg_plain,
-                        msg_html,
+                        render_to_string(
+                            "blog/subscriber_email.txt",
+                            {"new_blogs": new_blogs, "token": email},
+                        ),
+                        render_to_string(
+                            "blog/subscriber_email.html",
+                            {"new_blogs": new_blogs, "token": email},
+                        ),
                         None,
-                        to_emails,
-                    ),
+                        [email],
+                    )
+                    for email in to_emails
                 )
             )

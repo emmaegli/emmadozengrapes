@@ -40,11 +40,11 @@ def unsubscribe(request):
         subscriber = BlogSubscriber.objects.filter(
             models.Q(raw_email=token) | models.Q(user__email=token)
         )
+        subscriber.delete()
     except BlogSubscriber.DoesNotExist:
         pass
 
-    messages.SUCCESS(
-        "You have successfully unsubscribed to Emma Dozen Grapes Newsletter"
+    messages.success(
+        request, "You have successfully unsubscribed to Emma Dozen Grapes Newsletter"
     )
     return redirect("/blog")
-

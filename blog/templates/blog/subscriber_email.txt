@@ -14,3 +14,7 @@ Blogs
 {% for blog in new_blogs %}
     https://emmadozeneggs.com{% pageurl blog %}
 {% endfor %}
+
+Unsubscribe
+
+https://emmadozengrapes.com{% url 'unsubscribe_blog' %}?token={{ token }}
