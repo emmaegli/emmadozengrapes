@@ -18,10 +18,13 @@ class HomePage(Page):
         context = super().get_context(request, *args, **kwargs)
 
         recent_wine_review = (
-            BlogPage.objects.filter(categories__name="Wine Reviews").reverse().first()
+            BlogPage.objects.filter(categories__name="Wine Reviews")
+            .live()
+            .reverse()
+            .first()
         )
         context["recent_wine_review"] = recent_wine_review
-        recent_blog_posts = BlogPage.objects.order_by("-id")
+        recent_blog_posts = BlogPage.objects.order_by("-id").live()
         if recent_wine_review:
             recent_blog_posts = recent_blog_posts.exclude(id=recent_wine_review.id)
 
