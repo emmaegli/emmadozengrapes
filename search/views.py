@@ -28,8 +28,6 @@ def search(request):
     except EmptyPage:
         search_results = paginator.page(paginator.num_pages)
 
-    print(search_results.object_list)
-
     return TemplateResponse(
         request,
         "search/search.html",

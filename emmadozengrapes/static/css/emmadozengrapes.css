@@ -12,6 +12,8 @@ a:hover {
 
 .site-container {
   min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .footer {

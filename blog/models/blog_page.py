@@ -11,7 +11,7 @@ from wagtail.admin.edit_handlers import (
 from wagtail.search import index
 from modelcluster.fields import ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from blog.blocks import TwoImageBlock
+from blog.blocks import TwoImageBlock, ImageCaptionBlock
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
@@ -29,6 +29,7 @@ class BlogPage(Page):
             ("title", blocks.CharBlock(classname="blog-title")),
             ("paragraph", blocks.RichTextBlock()),
             ("image", ImageChooserBlock()),
+            ("image_w_caption", ImageCaptionBlock()),
             ("two_images", TwoImageBlock()),
         ]
     )
@@ -46,10 +47,23 @@ class BlogPage(Page):
 
     def preview_image(self):
         for block in self.body:
+            # IF we have a block that is the image type
             if block.block_type == "image":
                 return block.value
+            # If we have a block that is an image with a caption
+            elif block.block_type == "image_w_caption":
+                return block.value["image"]
+            # If we have a two image block
             elif block.block_type == "two_images":
-                return block.value["left_image"]
+                # Get the left image stream block
+                left_image = block.value["left_image"]
+                # If the first image (because there should only ever be one)
+                # in the left image is an image block
+                if left_image[0].block_type == "image":
+                    return left_image[0].value
+                # If the first image (because there should only ever be one)
+                # in the left image is an image block with a caption, grap the image
+                return left_image[0].value["image"]
         else:
             return None
 

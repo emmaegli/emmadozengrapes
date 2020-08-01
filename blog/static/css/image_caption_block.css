@@ -1,0 +1,9 @@
+.image-caption {
+  font-size: 0.8em;
+  margin-top: 0.5em;
+}
+
+.block-image_w_caption {
+  height: 100%;
+  width: 100%;
+}

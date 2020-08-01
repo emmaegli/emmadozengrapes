@@ -7,13 +7,26 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-md-6 col-sm-12 pb-3">
-        {% image self.left_image original as left_photo %}
-        <img class="left block-image" src="{{left_photo.url}}" height="auto" width="100%"/>
+    <div class="col-md-6 col-sm-12 pb-2">
+        {% with self.left_image|first as left_image %}
+            {% if left_image.block_type == 'image' %}
+                {% image left_image.value original as left_photo %}
+                <img class="left block-image" src="{{left_photo.url}}" width="100%" height="auto"/>
+            {% else %}
+                {% include_block self.left_image %}
+            {% endif %}
+        {% endwith %}
+        
     </div>
-    <div class="col-md-6 col-sm-12 pb-3">
-        {% image self.right_image original as right_photo %}
-        <img class="right block-image" src="{{right_photo.url}}" height="auto" width="100%"/>
+    <div class="col-md-6 col-sm-12">
+        {% with self.right_image|first as right_image %}
+            {% if right_image.block_type == 'image' %}
+                {% image right_image.value original as right_photo %}
+                <img class="right block-image" src="{{right_photo.url}}" width="100%" height="auto"/>
+            {% else %}
+                {% include_block self.right_image %}
+            {% endif %}
+        {% endwith %}
     </div>
 </div>
 

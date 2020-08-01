@@ -1,0 +1,18 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/image_caption_block.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div style="min-height: 100%">
+    {% image self.image original as image %}
+    <img class="left block-image" src="{{image.url}}" height="auto" width="100%"/>
+    <p class="image-caption loraitalic-font">
+        {{ self.caption }}
+    </p>
+</div>
+
+
+{% endblock %}
